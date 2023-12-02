@@ -1,29 +1,24 @@
 pipeline {
-  agent { label 'linux' }
 
-  environment {
-    DOCKERHUB_CREDENTIALS = credentials('romulosp-docker-hub')
-  }
-  stages {
-    stage('Build') {
-      steps {
-        sh './jenkins/build.sh'
-      }
+    agent any
+    
+    stages {
+        stage("build"){
+            steps {
+                echo 'building the application...'
+            }
+        }
+        
+    stage("test"){
+            steps {
+                echo 'testing the application...'
+            }
+        }
+        
+    stage("deploy"){
+            steps {
+                echo 'deploying the application...'
+            }
+        }
     }
-    stage('Login') {
-      steps {
-        sh './jenkins/login.sh'
-      }
-    }
-    stage('Push') {
-      steps {
-        sh './jenkins/push.sh'
-      }
-    }
-  }
-  post {
-    always {
-      sh './jenkins/logout.sh'
-    }
-  }
 }

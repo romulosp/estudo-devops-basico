@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registry = "gustavoapolinario/docker-test"
+    registry = "romulosp/estudo-devops-basico"
     registryCredential = 'romulosp-docker-hub'
     dockerImage = ''
   }

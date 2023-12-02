@@ -5,7 +5,13 @@ pipeline {
     stages {
         stage("build"){
             steps {
-                echo 'building the application...'
+                echo 'Construindo a imagem no docker hub...'
+                echo "romulosp/estudo-devops-basico:${env.VERSAO_APLICACAO}"
+
+                script {
+                  def customImage = docker.build("romulosp/estudo-devops-basico:${env.VERSAO_APLICACAO}")
+                  customImage.push()
+                }
             }
         }
         

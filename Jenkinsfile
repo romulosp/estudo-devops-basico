@@ -1,8 +1,5 @@
 pipeline {
-  agent {  label 'master' }
-  options {
-    buildDiscarder(logRotator(numToKeepStr: '5'))
-  }
+ 
   environment {
     DOCKERHUB_CREDENTIALS = credentials('romulosp-docker-hub')
   }

@@ -7,14 +7,14 @@ pipeline {
   agent any
   stages {
    
-    stage('CONSTRUINDO IMAGEM DOCKER') {
+    stage('Building image') {
       steps{
         script {
           dockerImage = docker.build registry + ":$VERSAO_APLICACAO"
         }
       }
     }
-    stage('Deploy IMAGEM DOCKER') {
+    stage('Deploy Image') {
       steps{
         script {
           docker.withRegistry( '', registryCredential ) {

@@ -7,14 +7,14 @@ pipeline {
   agent any
   stages {
    
-    stage('Building image') {
+    stage('CONSTRUINDO IMAGEM DOCKER') {
       steps{
         script {
           dockerImage = docker.build registry + ":$VERSAO_APLICACAO"
         }
       }
     }
-    stage('Deploy Image') {
+    stage('Deploy IMAGEM DOCKER') {
       steps{
         script {
           docker.withRegistry( '', registryCredential ) {
@@ -23,10 +23,6 @@ pipeline {
         }
       }
     }
-    stage('Remove Unused docker image') {
-      steps{
-        sh "docker rmi $registry:$VERSAO_APLICACAO"
-      }
-    }
+ 
   }
 }

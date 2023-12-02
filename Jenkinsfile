@@ -12,5 +12,6 @@ pipeline {
         sh './jenkins/build.sh'
       }
     }
-
+  }
+ 
 }

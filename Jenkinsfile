@@ -1,28 +1,30 @@
 pipeline {
-  environment {
-    registry = "romulosp/estudo-devops-basico"
-    registryCredential = 'romulosp-docker-hub'
-    dockerImage = ''
-  }
-  agent any
-  stages {
-   
-    stage('Building image') {
-      steps{
-        script {
-          dockerImage = docker.build registry + ":$VERSAO_APLICACAO"
+
+    agent any
+    
+    stages {
+        stage("build"){
+            steps {
+                echo 'Construindo a imagem no docker hub...'
+                echo "romulosp/estudo-devops-basico:${env.VERSAO_APLICACAO}"
+
+                script {
+                  def customImage = docker.build("romulosp/estudo-devops-basico:${env.VERSAO_APLICACAO}")
+                  customImage.push()
+                }
+            }
         }
-      }
-    }
-    stage('Deploy Image') {
-      steps{
-        script {
-          docker.withRegistry( '', registryCredential ) {
-            dockerImage.push()
-          }
+        
+    stage("test"){
+            steps {
+                echo 'testing the application...'
+            }
         }
-      }
+        
+    stage("deploy"){
+            steps {
+                echo 'deploying the application...'
+            }
+        }
     }
- 
-  }
 }

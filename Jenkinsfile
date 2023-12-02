@@ -6,7 +6,7 @@ steps {
 echo 'Starting to build docker image'
 
 script {
-def customImage = docker.build("romulosp/estudo-devops-basico:latest")
+def customImage = docker.build("romulosp/estudo-devops-basico:v1")
 customImage.push()
 }
 }

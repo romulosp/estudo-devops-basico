@@ -15,16 +15,18 @@ pipeline {
             }
         }
         
+     stage("deploy"){
+            steps {
+              cho 'FAZENDO O DEPLOY DA APLICAÇÃO'
+              sh  "docker run -d -p 80:80 romulosp/estudo-devops-basico:${env.VERSAO_APLICACAO}"
+            }
+      }
+      
     stage("test"){
             steps {
                 echo 'testing the application...'
             }
         }
-        
-    stage("deploy"){
-            steps {
-                echo 'deploying the application...'
-            }
-        }
+   
     }
 }

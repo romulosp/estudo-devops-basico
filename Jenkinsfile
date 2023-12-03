@@ -1,8 +1,6 @@
 pipeline {
 
-   agent {
-        docker { image 'linux' }
-    }
+   agent { label 'linux' }
     
     stages {
         stage("build"){

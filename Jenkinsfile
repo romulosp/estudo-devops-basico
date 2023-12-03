@@ -32,7 +32,6 @@ pipeline {
       steps{
         script {
           echo 'SUBINDO O SISTEMA'
-          echo dockerImage
           dockerImage.run()
         }
       }

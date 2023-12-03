@@ -1,9 +1,6 @@
 pipeline {
 
-  agent { label 'linux' }
-  options {
-    buildDiscarder(logRotator(numToKeepStr: '5'))
-  }
+    agent any
     
     stages {
         stage("build"){
@@ -21,10 +18,11 @@ pipeline {
      stage("deploy"){
             steps {
               echo 'FAZENDO O DEPLOY DA APLICAÇÃO'
-              sh  "docker run -d -p 80:80 romulosp/estudo-devops-basico:${env.VERSAO_APLICACAO}"
+              echo "romulosp/estudo-devops-basico:${env.VERSAO_APLICACAO}"
+
+
             }
-      }
-      
+    }
     stage("test"){
             steps {
                 echo 'testing the application...'

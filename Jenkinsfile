@@ -1,7 +1,7 @@
 pipeline {
 
    agent {
-        docker { image 'node:20.10.0-alpine3.18' }
+        docker { image 'linux' }
     }
     
     stages {
@@ -19,7 +19,7 @@ pipeline {
         
      stage("deploy"){
             steps {
-              cho 'FAZENDO O DEPLOY DA APLICAÇÃO'
+              echo 'FAZENDO O DEPLOY DA APLICAÇÃO'
               sh  "docker run -d -p 80:80 romulosp/estudo-devops-basico:${env.VERSAO_APLICACAO}"
             }
       }

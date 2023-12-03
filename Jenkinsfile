@@ -17,6 +17,8 @@ pipeline {
     stage('Deploy Image') {
       steps{
         script {
+
+          echo 'GRAVANDO IMAGEM DOCK HUB'
           docker.withRegistry( '', registryCredential ) {
             dockerImage.push()
           }

@@ -19,6 +19,8 @@ pipeline {
         script {
 
           echo 'GRAVANDO IMAGEM DOCK HUB'
+         
+
           docker.withRegistry( '', registryCredential ) {
             dockerImage.push()
           
@@ -30,6 +32,7 @@ pipeline {
       steps{
         script {
           echo 'SUBINDO O SISTEMA'
+          echo dockerImage
           dockerImage.run()
         }
       }

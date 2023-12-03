@@ -1,2 +1,2 @@
 #!/bin/bash
-docker romulosp/estudo-devops-basico:${env.VERSAO_APLICACAO} .
+docker build -t darinpope/dp-alpine:latest .

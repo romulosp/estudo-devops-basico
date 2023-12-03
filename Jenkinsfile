@@ -17,10 +17,7 @@ pipeline {
     stage('Deploy Image') {
       steps{
         script {
-
           echo 'GRAVANDO IMAGEM DOCK HUB'
-         
-
           docker.withRegistry( '', registryCredential ) {
             dockerImage.push()
           
@@ -31,8 +28,8 @@ pipeline {
 
     stage('run image'){
             steps{
-                echo "docker run -d -p 127.0.0.1:8081:8081 " + registry + ":$VERSAO_APLICACAO"
-                bat "docker run -d -p 127.0.0.1:8081:8081 " + registry + ":$VERSAO_APLICACAO"
+                echo "docker run -d -p 127.0.0.1:80:80 " + registry + ":$VERSAO_APLICACAO"
+                bat  "docker run -d -p 127.0.0.1:80:80 " + registry + ":$VERSAO_APLICACAO"
             }
     }
 

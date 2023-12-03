@@ -21,6 +21,8 @@ pipeline {
           echo 'GRAVANDO IMAGEM DOCK HUB'
           docker.withRegistry( '', registryCredential ) {
             dockerImage.push()
+            echo 'SUBINDO APLICAÇÃO'
+            dockerImage.run()
           }
         }
       }

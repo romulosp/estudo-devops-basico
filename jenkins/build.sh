@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "teste buil.sh"
+docker romulosp/estudo-devops-basico:${env.VERSAO_APLICACAO} .

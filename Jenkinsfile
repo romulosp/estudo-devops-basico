@@ -1,39 +1,16 @@
 pipeline {
-
   agent { label 'linux' }
   options {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
-    
-    stages {
-        stage("build"){
-            steps {
-                echo 'Construindo a imagem no docker hub...'
-                echo "romulosp/estudo-devops-basico:${env.VERSAO_APLICACAO}"
-
-                script {
-                  def customImage = docker.build("romulosp/estudo-devops-basico:${env.VERSAO_APLICACAO}")
-                  customImage.push()
-                }
-            }
-        }
-        
-     stage("deploy"){
-            steps {
-              echo 'FAZENDO O DEPLOY DO SISTEMA'
-              echo "romulosp/estudo-devops-basico:${env.VERSAO_APLICACAO}"
-
-            sh 'jenkins/build.sh'
-
-
-
-            }
+  environment {
+    DOCKERHUB_CREDENTIALS = credentials('darinpope-dockerhub')
+  }
+  stages {
+    stage('Build') {
+      steps {
+        sh './jenkins/build.sh'
+      }
     }
-    stage("test"){
-            steps {
-                echo 'testing the application...'
-            }
-        }
    
-    }
 }

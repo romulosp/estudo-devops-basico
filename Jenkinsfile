@@ -21,12 +21,18 @@ pipeline {
           echo 'GRAVANDO IMAGEM DOCK HUB'
           docker.withRegistry( '', registryCredential ) {
             dockerImage.push()
-            echo 'SUBINDO APLICAÇÃO'
-            dockerImage.run()
+          
           }
         }
       }
     }
- 
+ stage('RUN Image') {
+      steps{
+        script {
+          echo 'SUBINDO O SISTEMA'
+          dockerImage.run()
+        }
+      }
+    }
   }
 }

@@ -1,31 +1,28 @@
 pipeline {
-  agent { label 'linux' }
-  options {
-    buildDiscarder(logRotator(numToKeepStr: '5'))
-  }
   environment {
-    DOCKERHUB_CREDENTIALS = credentials('darinpope-dockerhub')
+    registry = "romulosp/estudo-devops-basico"
+    registryCredential = 'romulosp-docker-hub'
+    dockerImage = ''
   }
+  agent any
   stages {
-    stage('Build') {
-      steps {
-        sh './jenkins/build.sh'
+   
+    stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build registry + ":$VERSAO_APLICACAO"
+        }
       }
     }
-    stage('Login') {
-      steps {
-        sh './jenkins/login.sh'
+    stage('Deploy Image') {
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }
+        }
       }
     }
-    stage('Push') {
-      steps {
-        sh './jenkins/push.sh'
-      }
-    }
-  }
-  post {
-    always {
-      sh './jenkins/logout.sh'
-    }
+ 
   }
 }

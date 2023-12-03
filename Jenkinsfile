@@ -20,8 +20,7 @@ pipeline {
               echo 'FAZENDO O DEPLOY DO SISTEMA'
               echo "romulosp/estudo-devops-basico:${env.VERSAO_APLICACAO}"
 
-              sh "docker run -d -p 80:80 romulosp/estudo-devops-basico:${env.VERSAO_APLICACAO}"
-               
+              sh './teste.sh'
 
 
 

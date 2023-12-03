@@ -28,13 +28,14 @@ pipeline {
         }
       }
     }
- stage('RUN Image') {
-      steps{
-        script {
-          echo 'SUBINDO O SISTEMA'
-          dockerImage.run()
-        }
-      }
+
+    stage('run image'){
+            steps{
+                echo "docker run -d -p 127.0.0.1:8081:8081 " + registry + ":$VERSAO_APLICACAO"
+                bat "docker run -d -p 127.0.0.1:8081:8081 " + registry + ":$VERSAO_APLICACAO"
+            }
     }
+
+
   }
 }

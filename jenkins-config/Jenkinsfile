@@ -7,7 +7,7 @@ pipeline {
   agent any
   stages {
    
-    stage('Building image') {
+    stage('CONTRUINDO IMAGEM') {
       steps{
         script {
           dockerImage = docker.build registry + ":$VERSAO_APLICACAO"

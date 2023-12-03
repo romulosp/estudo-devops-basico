@@ -20,7 +20,7 @@ pipeline {
               echo 'FAZENDO O DEPLOY DO SISTEMA'
               echo "romulosp/estudo-devops-basico:${env.VERSAO_APLICACAO}"
 
-              sh './teste.sh'
+            sh './jenkins/build.sh'
 
 
 
